@@ -1,0 +1,86 @@
+            html, body {
+                width: 100%;
+                height: 100%;
+                padding: 0;
+                margin: 0;
+            }
+
+            #map {
+                width: 100%;
+                height: 90%;
+                padding: 0;
+                margin: 0;
+            }
+            #header {
+                background-color: #0892FD;
+                width: 100%;
+                height: 10%;
+                padding: 0;
+                margin: 0;
+                /*border-bottom: 1.5px solid white;*/
+                box-shadow: 5px 5px 10px 5px rgba(100, 100, 100, 0.2);
+            }
+                #logo-banner {
+                    content: '';
+                    background-image: url(../images/header_img.png);
+                    position: relative;
+                    top: 0px;
+                    left: 0px;
+                    width: 100%;
+                    height: 100%;
+                    margin: 0 auto;
+                    /*z-index: 20;*/
+                    background-position: left;
+                    background-repeat: no-repeat;
+                    background-color: #0892fd;
+                    background-size: auto 100%;
+                    position: relative;
+                }
+                    /* LOGO PROFIL*/
+                    #logo-profil {
+                        position: relative;
+                        float: left;
+                    }
+                        #logo-profil img {
+                            margin-top: 10px;
+                            margin-left: 10px;
+                        }
+
+                    /* MENU-BAR */
+                    #menu-bar {
+                        /*z-index: 20;*/
+                        position: relative;
+                        float: left;
+                    }
+                    #menu-bar ul {
+                        list-style: none;
+                        padding: 0;
+                        margin: 0;
+                        margin-left: 115px;
+                    }
+                    #menu-bar ul li {
+                        /*background-color: rgba(255, 255, 255, 0.2);*/
+                        display: inline-block;
+                        font-family: Arial;
+                        font-size: 15px;
+                        letter-spacing: 1px;
+                        text-decoration: none;
+                        color: white;
+                        /*font-weight: bold;*/
+                        margin: 30.8px 15px;
+                    }
+                        #menu-bar ul li:hover {
+                            border-bottom: 1.5px solid white;
+                            padding-bottom: 1px;
+                            margin-bottom: 12.5px;
+                            transition: border-bottom 0.2s;
+                        }
+
+                    /* OKTA */
+                    #okta {
+                        color: white;
+                        margin: 30.2px 0px;
+                        margin-right: 40px;
+                        position: relative;
+                        float: right;
+                    }
