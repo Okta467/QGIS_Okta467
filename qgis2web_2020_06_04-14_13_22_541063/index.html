@@ -58,6 +58,33 @@
         <script src="data/PALEMBANG_2.js"></script>
         <script src="data/KKNMandiri2019FakSAINTEK_3.js"></script>
         <script src="data/DOKTERGIGIPALEMBANG_4.js"></script>
+
+        <!-- MY MARKER ICON SCRIPT -->
+        <script>
+            // ---FOR COLOR MARKER---
+            // including color = { blue, red, green, orange, yellow, violet, grey, black }
+            // Change it at L.market([co])
+            // GREEN
+            // BLUE
+            var redIcon = new L.Icon({
+                iconUrl: 'https://cdn.rawgit.com/pointhi/leaflet-color-markers/master/img/marker-icon-2x-red.png',
+                shadowUrl: 'https://cdnjs.cloudflare.com/ajax/libs/leaflet/0.7.7/images/marker-shadow.png',
+                iconSize: [25, 41],
+                iconAnchor: [12, 41],
+                popupAnchor: [1, -34],
+                shadowSize: [41, 41]
+            });
+            var greenIcon = new L.Icon({
+                iconUrl: 'https://cdn.rawgit.com/pointhi/leaflet-color-markers/master/img/marker-icon-2x-green.png',
+                shadowUrl: 'https://cdnjs.cloudflare.com/ajax/libs/leaflet/0.7.7/images/marker-shadow.png',
+                iconSize: [25, 41],
+                iconAnchor: [12, 41],
+                popupAnchor: [1, -34],
+                shadowSize: [41, 41]
+            });
+        </script>
+
+        <!-- MAIN SCRIPT -->
         <script>
         var highlightLayer;
         function highlightFeature(e) {
@@ -78,6 +105,7 @@
         var map = L.map('map', {
             zoomControl:true, maxZoom:28, minZoom:1
         }).fitBounds([[-3.100277203989697,104.55094691637373],[-2.8586201958757074,104.93748637658838]]);
+
         var hash = new L.Hash(map);
         map.attributionControl.setPrefix('<a href="https://github.com/tomchadwin/qgis2web" target="_blank">qgis2web</a> &middot; <a href="https://leafletjs.com" title="A JS library for interactive maps">Leaflet</a> &middot; <a href="https://qgis.org">QGIS</a>');
         var autolinker = new Autolinker({truncate: {length: 30, location: 'smart'}});
@@ -444,6 +472,119 @@
         map.on("layerremove", function(){
             resetLabels([layer_KKNMandiri2019FakSAINTEK_3,layer_DOKTERGIGIPALEMBANG_4]);
         });
+
+
+
+        /* -----------------------------------------------------------------
+            <!-- SCRIPT TO ADD MARKER -> DOKTERGIGIPALEMBANG LAYER -->
+            <!-- Note: this marker added manually because still have -->
+            <!--       no solution to add it dynamically in main script -->
+            <!--       below, have been using pointToLayer and onEachFeature -->
+            <!--       but still got no luck to solve it yet... -->
+           -----------------------------------------------------------------
+        */
+
+        // Experiment
+        /*
+        var label_marker =
+            '<table>\
+                <tr>\
+                    <th scope="row">DOKTER GIGI</th>\
+                    <td>&nbsp;</td>\
+                </tr>\
+                <tr>\
+                    <th scope="row">Nama:</th>\
+                    <td>'+nama+'</td>\
+                </tr>\
+            </table>\
+            Zoom in dan hover ke polygon untuk melihat detail'
+        ;
+        */
+
+        // Nama Dokter Gigi
+        var dokter_gigi = ["Praktek Mandiri Asuhan Kesehatan Gigi dan Mulut",
+                            "Drg. Andhika Sitasari",
+                            "Drg. Ari Anca, Drg. Rahmatullah Irfani & Drg. Sisca Hermawati",
+                            "Praktik Dokter Gigi Miko",
+                            "Drg. Rhaisa SS (Rhaisa Dental Care)",
+                            "Dokter Gigi Thomas",
+                            "Else Dental Clinic",
+                            "Dokter Gigi Billy Sujatmiko, SpKG",
+                            "Orange Dental Care Palembang",
+                            "Drg. Imelda Theodora",
+                            "drg. Adi Pratama (Klinik Mitra)",
+                            "Clover Dental Care",
+                            "Irene Dental Care",
+                            "Bikin Gigi Mustika",
+                            "Drg. Arie Ekayanti Edwinsari F",
+                            "Drg. Muznah Abdurrachman (Seven Dental Clinic)",
+                            "Putut Dentist"];
+        var keterangan_dokter_gigi = "<br>Note: zoom in untuk detail dokter lebih lanjut";
+
+        // Koordinat (latlng) dokter gigi
+        var dokter_gigi_lat = [-3.017333,
+                               -3.011193,
+                               -3.007224,
+                               -3.008871,
+                               -2.989392,
+                               -2.982210,
+                               -2.979866,
+                               -2.983663,
+                               -2.998175,
+                               -2.986935, 
+                               -2.973820, 
+                               -2.986040, 
+                               -2.980598, 
+                               -2.985596, 
+                               -2.973613, 
+                               -2.973396, 
+                               -2.966298];
+        var dokter_gigi_lng = [104.755040,
+                               104.759059, 
+                               104.760145, 
+                               104.766694, 
+                               104.742731, 
+                               104.764702, 
+                               104.756422, 
+                               104.739125, 
+                               104.776772, 
+                               104.730200, 
+                               104.770749, 
+                               104.744427, 
+                               104.757520, 
+                               104.762605, 
+                               104.752901, 
+                               104.769948, 
+                               104.747230];
+
+        for (var i=1; i<=17; i++) {
+            L.marker([dokter_gigi_lat[i], dokter_gigi_lng[i]], {icon: greenIcon}).bindPopup("<center><b>"+dokter_gigi[i]+"</b>"+keterangan_dokter_gigi+"</center>", {maxHeight: 400}).addTo(map);
+        }
+
+        /*
+        // 1. Praktek Mandiri Asuhan Kesehatan Gigi dan Mulut
+        var marker_1 = new L.marker([-3.017333, 104.755040], {icon: greenIcon});
+        marker_1.addTo(map);
+        marker_1.bindPopup(label_marker(dokter_gigi_1, {maxHeight: 400})).addTo(map);
+        // 2. Drg. Andhika Sitasari
+        var marker_2 = new L.marker([-3.011193, 104.759059], {icon: greenIcon});
+        marker_2.addTo(map);
+        marker_2.bindPopup(label_marker(dokter_gigi_2, {maxHeight: 400})).addTo(map);
+        // 3. Drg. Ari Anca, Drg. Rahmatullah Irfani & Drg. Sisca Hermawati
+        var marker_3 = new L.marker([-3.007224, 104.760145], {icon: greenIcon});
+        marker_3.addTo(map);
+        marker_3.bindPopup(label_marker(dokter_gigi_3, {maxHeight: 400})).addTo(map);
+        // 3. Praktik Dokter Gigi Miko
+        var marker_4 = new L.marker([-3.008871, 104.766694], {icon: greenIcon});
+        marker_4.addTo(map);
+        marker_4.bindPopup(label_marker(dokter_gigi_4, {maxHeight: 400})).addTo(map);
+        */
+
+
+        /* -----------------------------------------------------------------
+            END OF SCRIPT ADD MARKER 
+           -----------------------------------------------------------------
+        */
         </script>
     </body>
 </html>
