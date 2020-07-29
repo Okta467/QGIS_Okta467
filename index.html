@@ -55,6 +55,14 @@
 		/*          MAIN STYLES         */
 		/*                              */
 		/*==============================*/
+		@keyframes judul_box_anim {
+			0% { color: black; }
+			30% { color: #00bcd4bd; }
+			50% { color: #8BC34A; }
+			70% { color: #00bcd4bd; }
+			100% { color: black; }
+		}
+
 		.container {
 		    margin-top: 30px;
 			/* background-image: linear-gradient(to right, #00bcd4bd , yellow); */
@@ -71,6 +79,8 @@
 			font-weight: bold;
 			letter-spacing: 1px;
 			font-size: 20px;
+			border-top-left-radius: 10px;
+			border-top-right-radius: 10px;
 		}
 		.judul-box {
 			/*background-image: linear-gradient(-90deg, #8BC34A , #6bd8afde);*/
@@ -95,8 +105,21 @@
 		}
 			.content-box a {
 				text-decoration: none;
+				font-weight: bolder;
+				/*text-shadow: 	-1px -1px 0 #fff, 
+								1px -1px 0 #fff, 
+								-1px 1px 0 #fff, 
+								1px 1px 0 #fff;*/
 				color: #000;
+ 				animation: judul_box_anim 1s infinite;
+				/*animation-name: judul_box_anim;*/
+				animation-duration: 3s;
+				/*animation-delay: 2s;*/
+				/*animation-iteration-count: infinite;*/
+				/*animation-direction: alternate;*/
 			}
+			.content-box.last-left { border-bottom-left-radius: 10px; }
+			.content-box.last-right { border-bottom-right-radius: 10px; }
 		.disabled-link {
 			color: black;
 			cursor: default;
@@ -131,14 +154,14 @@
 	<!-- JUDUL PROJECT -->
 	<div class="col-12 project-title-box">Project Kampus</div>
 	<!-- LIST PROJCET -->
-	<div class="col-6 content-box">
+	<div class="col-6 content-box last-left">
 		<a href="https://okta467.github.io/QGIS_Okta467/qgis2web_2020_06_04-14_13_22_541063/#12/-2.9795/104.7442">
 			<div class="col-12 judul-box">
 				QGIS_Okta467
 			</div>
 		</a>
 	</div>
-	<div class="col-6 content-box" style="height: 119px"></div>
+	<div class="col-6 content-box last-right" style="height: 119px"></div>
 </div>
 <!-- ============== -->
 
@@ -153,7 +176,7 @@
 	<!-- JUDUL PROJECT -->
 	<div class="col-12 project-title-box">First Project</div>
 	<!-- LIST PROJCET -->
-	<div class="col-6 content-box">
+	<div class="col-6 content-box last-left">
 		<a href="https://toko-kgs.000webhostapp.com/index.php">
 			<div class="col-12 judul-box">
 				Sistem Inventori - PT. Kreatif Global Solusindo
@@ -180,7 +203,7 @@
 			</li>
 		</ul>
 	</div>
-	<div class="col-6 content-box">
+	<div class="col-6 content-box last-right">
 		<a href="#" class="disabled-link">
 			<div class="col-12 judul-box">
 				Sistem Informasi Rumah Sakit Mata (soon)
@@ -220,7 +243,7 @@
 	<!-- JUDUL PROJECT -->
 	<div class="col-12 project-title-box">Second Project</div>
 	<!-- LIST PROJCET -->
-	<div class="col-6 content-box">
+	<div class="col-6 content-box last-left">
 		<a href="https://gis-malta.000webhostapp.com/">
 			<div class="col-12 judul-box">
 				GIS - PT. Malta Satya Utama
@@ -247,7 +270,7 @@
 			</li>
 		</ul>
 	</div>
-	<div class="col-6 content-box">
+	<div class="col-6 content-box last-right">
 		<a href="https://perpus-amik-sigma.000webhostapp.com/">
 			<div class="col-12 judul-box">
 				SIPERPUS - AMIK SIGMA Palembang
@@ -409,7 +432,7 @@
 		</ul>
 	</div>
 	<!-- LIST PROJCET 3 -->
-	<div class="col-6 content-box">
+	<div class="col-6 content-box last-left">
 		<a href="#" class="disabled-link">
 			<div class="col-12 judul-box">
 				APP Pendataan Penduduk - Dinas Pemberdayaan Masyarakat dan Desa Provinsi SUMSEL (soon)
@@ -436,32 +459,34 @@
 			</li>
 		</ul>
 	</div>
-	<div class="col-6 content-box" style="opacity: 0">
-		<a href="#" class="disabled-link">
-			<div class="col-12 judul-box">
-				APP Pendataan Penduduk - Dinas Pemberdayaan Masyarakat dan Desa Provinsi SUMSEL (soon)
-			</div>
-		</a>
-		<ul style="list-style-type: none;">
-			<li>Admin
-				<ul>
-					<li>Username: admin</li>
-					<li>Password: admin</li>
-				</ul>
-			</li>
-			<li>Warga
-				<ul>
-					<li>Username: okta99</li>
-					<li>Password: okta99</li>
-				</ul>
-			</li>
-			<li>Kepala BPD
-				<ul>
-					<li>Username: okta00</li>
-					<li>Password: okta00</li>
-				</ul>
-			</li>
-		</ul>
+	<div class="col-6 content-box last-right">
+		<div  style="opacity: 0">
+			<a href="#" class="disabled-link">
+				<div class="col-12 judul-box">
+					APP Pendataan Penduduk - Dinas Pemberdayaan Masyarakat dan Desa Provinsi SUMSEL (soon)
+				</div>
+			</a>
+			<ul style="list-style-type: none;">
+				<li>Admin
+					<ul>
+						<li>Username: admin</li>
+						<li>Password: admin</li>
+					</ul>
+				</li>
+				<li>Warga
+					<ul>
+						<li>Username: okta99</li>
+						<li>Password: okta99</li>
+					</ul>
+				</li>
+				<li>Kepala BPD
+					<ul>
+						<li>Username: okta00</li>
+						<li>Password: okta00</li>
+					</ul>
+				</li>
+			</ul>
+		</div>
 	</div>
 </div>
 <!-- ============= -->
